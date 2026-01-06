@@ -6,7 +6,7 @@ export const projects = [
     tech: ['React', 'AWS S3', 'AWS Lambda', 'AWS SES'],
     images: [
       `${import.meta.env.BASE_URL}assets/email-submission/img1.png`,
-      `${import.meta.env.BASE_URL}personal-website/assets/email-submission/img2.png`
+      `${import.meta.env.BASE_URL}assets/email-submission/img2.png`
     ]
   },
   {
