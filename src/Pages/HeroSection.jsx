@@ -1,44 +1,34 @@
-import SplitText from "../components/SplitText";
 import "./HeroSection.css";
+
 const HeroSection = () => {
-    const handleAnimationComplete = () => {
-        console.log('All letters have animated!');
-    };
     return (
-        <section
-            style={{
-                minHeight: "60vh",
-                display: "flex",
-                alignItems: "flex-start",
-                justifyContent: "center",
-                padding: "3rem",
-            }}>
-            <div style={{ maxWidth: "800px", textAlign: "center" }}>
-                <SplitText
-                    text="Ricardo Eric Wijaya"
-                    tag="h1"
-                    className="hero-name"
-                    delay={100}
-                    duration={0.6}
-                    ease="power3.out"
-                    splitType="chars"
-                    from={{ opacity: 0, y: 40 }}
-                    to={{ opacity: 1, y: 0 }}
-                    threshold={0.1}
-                    rootMargin="-100px"
-                    textAlign="center"
-                    onLetterAnimationComplete={handleAnimationComplete}
-                />
-                <h3 className="hero-role">Software Engineer</h3>
+        <section id="hero" className="hero-section">
+            <div className="hero-content">
+                <div className="hero-prompt">
+                    $ <span className="hero-prompt-text">whoami</span>
+                </div>
+                
+                <h1 className="hero-name">Ricardo Eric Wijaya</h1>
+                <div className="hero-tagline">
+                    Backend Engineer · Jakarta, Indonesia<span className="cursor"></span>
+                </div>
 
                 <p className="hero-description">
-                    Hi, I’m a software engineer who enjoys turning ideas into scalable
-                    projects. I’m constantly learning new technologies, exploring cloud
-                    solutions, and improving my understanding of software architecture to
-                    build efficient and well-structured systems.
+                    I work on the stuff users don't see — APIs, services,
+                    databases, and the glue holding everything together.
                 </p>
+                
+                <div className="hero-status">
+                    Currently open to new opportunities.
+                </div>
+
+                <div className="hero-actions">
+                    <a href="#projects" className="btn">[View Projects]</a>
+                    <a href="#contact" className="btn">[Contact Me]</a>
+                </div>
             </div>
         </section>
-    )
+    );
 }
-export default HeroSection
+
+export default HeroSection;

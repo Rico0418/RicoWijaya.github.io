@@ -1,21 +1,98 @@
-.hero-name {
-  font-size: 3.5rem;
-  font-weight: 800;
-  margin-bottom: 0.5rem;
+.hero-section {
+  min-height: calc(100vh - 100px);
+  display: flex;
+  align-items: center;
 }
 
-.hero-role {
-  font-size: 1.4rem;
+.hero-content {
+  max-width: 800px;
+}
+
+.hero-prompt {
+  font-family: var(--font-mono);
+  color: var(--accent);
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+}
+
+.hero-prompt-text {
+  color: var(--text-heading);
+}
+
+.hero-name {
+  font-family: var(--font-mono);
+  font-size: 4rem;
   font-weight: 700;
-  opacity: 0.85;
   margin-bottom: 0.5rem;
-  color: #6AECE1;
+  color: var(--text-heading);
+  line-height: 1.1;
+}
+
+.hero-tagline {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+
+.cursor {
+  display: inline-block;
+  width: 10px;
+  height: 1.2em;
+  background-color: var(--accent);
+  vertical-align: text-bottom;
+  animation: blink 1s step-end infinite;
+  margin-left: 5px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 .hero-description {
-  font-size: 1.05rem;
-  font-weight: 500;
+  font-size: 1.1rem;
+  color: var(--text-main);
+  max-width: 600px;
+  margin-bottom: 1.5rem;
   line-height: 1.7;
-  opacity: 0.9;
-  color: #C1E59F;
+}
+
+.hero-status {
+  font-family: var(--font-mono);
+  color: var(--accent);
+  margin-bottom: 3rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.btn {
+  font-family: var(--font-mono);
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid var(--accent);
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.btn:hover {
+  background: rgba(0, 255, 136, 0.1);
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
+}
+
+@media (max-width: 768px) {
+  .hero-name {
+    font-size: 2.5rem;
+  }
+  
+  .hero-tagline {
+    font-size: 1.2rem;
+  }
 }

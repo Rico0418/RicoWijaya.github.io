@@ -1,0 +1,32 @@
+.about-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-content {
+  color: var(--text-main);
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+.about-content p {
+  margin-bottom: 1.5rem;
+}
+
+.about-content p:last-child {
+  margin-bottom: 0;
+}
+
+.about-prompt {
+  font-family: var(--font-mono);
+  color: #888;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.about-prompt::before {
+  content: '>';
+  color: var(--accent);
+}

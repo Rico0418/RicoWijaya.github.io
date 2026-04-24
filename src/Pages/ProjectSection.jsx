@@ -1,72 +1,87 @@
-import { FiGithub } from "react-icons/fi";
-import Carousel from "../components/Carousel";
+import { useState } from "react";
 import { projects } from "./projects";
 import "./ProjectSection.css";
 
-const ProjectSection = () => {
-  return (
-    <section className="project-section">
-      <div className="project-title">
-        <h2 className="section-title">Projects</h2>
-      </div>
+const ProjectCard = ({ project }) => {
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-      <div className="project-list">
-        {projects.map((project, index) => {
-          const imageItems = project.images
-            ? project.images.map((img, i) => ({
-                id: i,
-                image: img,
-                title: project.title
-              }))
-            : [];
+    const hasMultipleImages = project.images && project.images.length > 1;
 
-          return (
-            <div key={index} className="project-card">
-              {project.images && (
-                <div className="project-carousel">
-                  <Carousel
-                    items={imageItems}
-                    baseWidth={900}
-                    loop
-                    autoplay
-                  />
+    const handleNextImage = () => {
+        setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
+    };
+
+    const handlePrevImage = () => {
+        setCurrentImageIndex((prev) => (prev - 1 + project.images.length) % project.images.length);
+    };
+
+    return (
+        <div className="terminal-window project-card">
+            <div className="terminal-header">
+                <div className="terminal-dots">
+                    <div className="terminal-dot close"></div>
+                    <div className="terminal-dot minimize"></div>
+                    <div className="terminal-dot maximize"></div>
                 </div>
-              )}
-
-              <div className="project-content">
-                <div className="project-header">
-                  <h3>{project.title}</h3>
-
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="github-link"
-                    >
-                      <FiGithub size={20} />
-                    </a>
-                  )}
-                </div>
-
-                <p className="project-description">
-                  {project.description}
-                </p>
-
-                <div className="tech-stack">
-                  {project.tech.map((tech, i) => (
-                    <span key={i} className="tech-pill">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
+                <div className="terminal-title">{project.title.toLowerCase().replace(/\s+/g, '-')}</div>
             </div>
-          );
-        })}
-      </div>
-    </section>
-  );
+            
+            {project.images && project.images.length > 0 && (
+                <div className="project-thumbnail-container">
+                    <img 
+                        src={project.images[currentImageIndex]} 
+                        alt={`${project.title} screenshot ${currentImageIndex + 1}`} 
+                        className="project-thumbnail"
+                    />
+                    {hasMultipleImages && (
+                        <div className="carousel-controls">
+                            <button className="carousel-btn prev" onClick={handlePrevImage}>&lt;</button>
+                            <span className="carousel-indicator">{currentImageIndex + 1} / {project.images.length}</span>
+                            <button className="carousel-btn next" onClick={handleNextImage}>&gt;</button>
+                        </div>
+                    )}
+                </div>
+            )}
+            
+            <div className="project-content">
+                <h3 className="project-title">{project.title}</h3>
+                <p className="project-description">{project.description}</p>
+                
+                <div className="project-tech">
+                    {project.tech.map((techItem, i) => (
+                        <span key={i} className="tech-tag">{techItem}</span>
+                    ))}
+                </div>
+                
+                <div className="project-links">
+                    {project.github && (
+                        <a 
+                            href={project.github} 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="project-link"
+                        >
+                            [View Source]
+                        </a>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+const ProjectSection = () => {
+    return (
+        <section id="projects" className="projects-section">
+            <h2 className="projects-header">ls ./projects</h2>
+            
+            <div className="projects-grid">
+                {projects.map((project, index) => (
+                    <ProjectCard key={index} project={project} />
+                ))}
+            </div>
+        </section>
+    );
 };
 
 export default ProjectSection;
